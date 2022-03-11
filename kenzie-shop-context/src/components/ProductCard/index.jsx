@@ -1,6 +1,8 @@
 import { Container, ContentContainer } from "./styles";
+import { useCart } from "../../providers/cart";
 
 const ProductCard = ({ product }) => {
+  const { addToCart } = useCart();
   const formattedPrice = new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
@@ -12,7 +14,9 @@ const ProductCard = ({ product }) => {
       <ContentContainer>
         <h3>{product.name}</h3>
         <span>{formattedPrice}</span>
-        <button>Adicionar ao Carrinho</button>
+        <button onClick={() => addToCart(product)}>
+          Adicionar ao Carrinho
+        </button>
       </ContentContainer>
     </Container>
   );
